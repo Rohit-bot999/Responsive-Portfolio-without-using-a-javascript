@@ -1,0 +1,419 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Rohit—Portfolio</title>
+  <meta name="description" content="Simple responsive portfolio built with only HTML & CSS (no JavaScript)." />
+  <style>
+    :root {
+      --bg: #0f1724;
+      --card: #0b1220;
+      --muted: #94a3b8;
+      --accent: #7c3aed;
+      --glass: rgba(255, 255, 255, 0.03);
+      --radius: 14px;
+      font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+    }
+
+    * {
+      box-sizing: border-box
+    }
+
+    html,
+    body {
+      height: 100%
+    }
+
+    body {
+      margin: 0;
+      background: linear-gradient(180deg, #071024 0%, #071428 100%);
+      color: #e6eef8;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      line-height: 1.4;
+      padding: 28px;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto
+    }
+
+    /* Header */
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 28px
+    }
+
+    .brand {
+      display: flex;
+      gap: 12px;
+      align-items: center
+    }
+
+    .logo {
+      width: 70px;
+      height: 45px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--accent), #4f46e5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 20px;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.4)
+    }
+
+    nav a {
+      color: var(--muted);
+      text-decoration: none;
+      margin: left 0, 23px;
+      font-weight: 600
+    }
+
+    nav a:hover {
+      color: rgb(83, 83, 175);
+    }
+
+    /* Hero */
+    .hero {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 18px;
+      background: var(--glass);
+      padding: 22px;
+      border-radius: var(--radius);
+      box-shadow: 0 8px 30px rgba(2, 6, 23, 0.6)
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 110px 1fr;
+      gap: 18px;
+      align-items: center
+    }
+
+    .profile {
+      width: 110px;
+      height: 110px;
+      border-radius: 12px;
+      object-fit: cover;
+      border: 2px solid rgba(255, 255, 255, 0.06)
+    }
+
+    .hero h1 {
+      margin: 0;
+      font-size: 20px
+    }
+
+    .hero .subtitle {
+      color: var(--muted);
+      font-size: 14px;
+      margin-top: 6px
+    }
+
+    .cta {
+      margin-top: 12px;
+      display: flex;
+      gap: 12px
+    }
+
+    .btn {
+      padding: 10px 14px;
+      border-radius: 10px;
+      background: transparent;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      cursor: pointer;
+      font-weight: 600
+    }
+
+    .btn.primary {
+      background: linear-gradient(90deg, var(--accent), #4f46e5);
+      border: none
+    }
+
+    /* Sections */
+    section {
+      margin-top: 20px
+    }
+
+    .grid {
+      display: grid;
+      gap: 18px;
+      px
+    }
+
+    /* Projects */
+    .projects {
+      grid-template-columns: 1fr;
+    }
+
+    .card {
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01));
+      padding: 16px;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.02);
+      box-shadow: 0 6px 18px rgba(2, 6, 23, 0.5)
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px
+    }
+
+    .project-thumb {
+      width: 100%;
+      height: 160px;
+      border-radius: 10px;
+      object-fit: cover;
+      display: block
+    }
+
+    .project-title {
+      margin: 10px 0 6px 0;
+      font-weight: 700
+    }
+
+    .project-desc {
+      color: var(--muted);
+      font-size: 14px;
+      margin: 0
+    }
+
+    /* About / Skills */
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px
+    }
+
+    .skills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 10px
+    }
+
+    .skill {
+      background: rgba(255, 255, 255, 0.03);
+      padding: 8px 10px;
+      border-radius: 999px;
+      font-weight: 600;
+      font-size: 13px
+    }
+
+    /* Contact */
+    .contact-form {
+      display: grid;
+      gap: 10px
+    }
+
+    .field {
+      padding: 12px;
+      border-radius: 10px;
+      background: transparent;
+      border: 1px solid rgba(255, 255, 255, 0.04);
+      color: inherit
+    }
+
+    .submit {
+      padding: 10px 12px;
+      border-radius: 10px;
+      background: var(--accent);
+      border: none;
+      color: white;
+      font-weight: 700
+    }
+
+    footer {
+      color: var(--muted);
+      font-size: 13px;
+      margin-top: 22px;
+      text-align: center
+    }
+
+    /* Responsive */
+    @media(min-width:700px) {
+      .hero {
+        grid-template-columns: 1fr 420px
+      }
+
+      .projects-grid {
+        grid-template-columns: repeat(2, 1fr)
+      }
+
+      .two-col {
+        grid-template-columns: 1fr 360px
+      }
+    }
+
+    @media(min-width:1000px) {
+      body {
+        padding: 48px
+      }
+
+      .hero-grid {
+        grid-template-columns: 140px 1fr
+      }
+
+      .projects-grid {
+        grid-template-columns: repeat(3, 1fr)
+      }
+    }
+
+    /* Small niceties */
+    a.badge {
+      display: inline-block;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.04);
+      font-weight: 700;
+      color: var(--muted);
+      text-decoration: none
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <header>
+      <div class="brand">
+        <div class="logo">Rk</div>
+        <div>
+          <div style="font-weight:700">Profile</div>
+          <div style="color:var(--muted);font-size:13px">Passionate and detail-oriented Web Developer fresher with
+            knowledge of HTML, CSS & JavaScript,or responsive design. Seeking an entry-level opportunity to apply my
+            skills in front-end and back-end development while contributing to innovative web solutions and gaining
+            real-world experience.</div>
+        </div>
+      </div>
+      <nav aria-label="Main navigation">
+        <a href="#Home">Home</a>
+        <a href="#About">About</a>
+        <a href="#Projects">Projects</a>
+        <a href="#Contact Me">Contact</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div>
+          <div class="hero-grid">
+            <!-- Replace src with your image path (example: images/me.jpg) -->
+            <img
+              src="data:image/jpeg;base64,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"
+              alt="Profile" class="profile">
+            <div>
+              <h1>Hi,My name is Rohit</h1>
+              <div>and I am a Web Developer</div>
+              <div class="cta">
+                <a class="btn primary" href="#projects">See work</a>
+                <a class="btn" href="#contact">Hire me</a>
+              </div>
+            </div>
+          </div>
+          <p></p>
+
+          <aside class="card">
+            <div style="display:flex;flex-direction:column;gap:8px">
+              <div style="font-weight:700">Contact</div>
+              <div style="color:var(--muted);font-size:14px">rohitjee630@gmail.com</div>
+              <div style="height:8px"></div>
+              <div style="font-weight:700">Location</div>
+              <div style="color:var(--muted);font-size:14px">Dehradun, India</div>
+              <div style="height:8px"></div>
+              <div style="font-weight:700">Available for</div>
+              <div style="color:var(--muted);font-size:14px">Web developer & full-time</div>
+            </div>
+          </aside>
+      </section>
+
+      <section id="projects" class="grid projects">
+        <h2 style="margin:10px 0"> Projects</h2>
+        <div class="projects-grid">
+          <article class="card">
+            <img class="project-thumb" src="https://m.media-amazon.com/images/I/51HCHFclmmL.jpg" alt="Amazon UI">
+            <div class="project-title">Amazon UI</div>
+            <p class="project-desc">Designed and developed a responsive Amazon-inspired user interface using HTML and
+              CSS, showcasing strong front-end development skills and attention to user experience.</p>
+          </article>
+
+          <article class="card">
+            <img class="project-thumb" src="https://assets.roadmap.sh/guest/roammap-18-xvyn0.jpg" alt="Projects2">
+            <div class="project-title">Portfolio</div>
+            <p class="project-desc"> Responsive-Portfolio using a HTML,CSS. No javascript
+            </p>
+          </article>
+
+          <article class="card">
+            <img class="project-thumb"
+              src="https://images.unsplash.com/photo-1508780709619-79562169bc64?w=1200&q=60&auto=format&fit=crop"
+              alt="Project 3">
+            <div class="project-title">Project 3</div>
+            <p class="project-desc">Design system snippets and patterns — buttons, forms, and cards — all written with
+              reusability in mind.</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="Education" class="two-col">
+        <div class="card">
+          <h3 style="margin-top:0">Education</h3>
+
+          <head style="color:var(--muted);margin-top:8px">B.Tech Electronics & Communication</head>
+          <p style="color:var(--muted);margin: 4px;">Uttarakhand Technicle University</p>
+
+
+          <div style="margin-top:12px">
+            <div style="font-weight:700"> Technicle Skills</div>
+            <div class=" Technicle skills">
+              <p style="color:var(--muted);margin: 4px;">
+                <span class="Technicle skill">HTML5</span>
+                <span class="Technicle skill">CSS3</span>
+                <span class="Technicle skill">JavaScript</span>
+                <span class="Technicle skill">Bootstrap</span>
+                <span class="Technicle skill">GitHub</span>
+                <span class="Technicle skill">Git</span>
+                <span class="Technicle skill">VS Code</span>
+            </div>
+          </div>
+        </div>
+
+        <aside class="card">
+          <h4 style="margin-top:0">Quick links</h4>
+
+          <div style="display:flex;flex-direction:column;gap:8px;margin-top:12px">
+            <a class="badge"
+              hre="https://github.com/Rohit-bot999/Responsive-Portfolio-without-using-a-javascript.git">Download Cv</a>
+            <a class="badge" href="https://github.com/Rohit-bot999">GitHub</a>
+            <a class="badge" href="https://www.linkedin.com/in/rohit-kumar-876b1a299">Linkdin</a>
+          </div>
+        </aside>
+      </section>
+
+      <section id="contact">
+        <div class="card">
+          <h3 style="margin-top:0">Contact</h3>
+          <form class="contact-form" action="mailto:youremail@example.com" method="post" enctype="text/plain">
+            <input class="field" type="text" name="name" placeholder="Your name" required>
+            <input class="field" type="email" name="email" placeholder="you@example.com" required>
+            <textarea class="field" name="message" rows="5" placeholder="Message" required></textarea>
+            <button class="submit" type="submit">Send</button>
+          </form>
+        </div>
+      </section>
+
+    </main>
+
+    <footer>
+      Made with ❤️ — Rohit Kumar • Built with only HTML & CSS
+    </footer>
+  </div>
+</body>
+
+</html>
